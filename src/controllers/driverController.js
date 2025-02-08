@@ -2,17 +2,17 @@ const { fetchDriversByCompany, insertDriver } = require('../models/driverModel')
 
 // Listar motoristas por empresa
 exports.getDriversByCompany = async (req, res) => {
-    const { companyId } = req.params;
+  const companyId = Number(req.params.companyId); 
 
-    try {
-        const drivers = await fetchDriversByCompany(companyId);
-        if (!drivers.length) {
-            return res.status(404).json({ message: 'Nenhum motorista encontrado.' });
-        }
-        res.json(drivers);
-    } catch (error) {
-        res.status(500).json({ message: 'Erro ao buscar motoristas.', error });
-    }
+  try {
+      const drivers = await fetchDriversByCompany(companyId);
+      if (!drivers.length) {
+          return res.status(404).json({ message: 'Nenhum motorista encontrado.' });
+      }
+      res.json(drivers);
+  } catch (error) {
+      res.status(500).json({ message: 'Erro ao buscar motoristas.', error });
+  }
 };
 
 // Criar um novo motorista
