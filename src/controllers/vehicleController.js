@@ -1,4 +1,4 @@
-const { fetchVehiclesByDriver, insertVehicle } = require('../models/vehicleModel');
+const { fetchVehiclesByDriver, insertVehicle, fetchAllVehicles } = require('../models/vehicleModel');
 
 // Listar veículos por motorista
 exports.getVehiclesByDriver = async (req, res) => {
@@ -32,4 +32,19 @@ exports.createVehicle = async (req, res) => {
       res.status(500).json({ message: 'Erro ao criar veículo.', error });
   }
 };
+
+// Listar todos os veículos (NOVA FUNÇÃO)
+exports.getAllVehicles = async (req, res) => {
+    try {
+        const vehicles = await fetchAllVehicles();
+        if (!vehicles.length) {
+            return res.status(404).json({ message: 'Nenhum veículo encontrado.' });
+        }
+        res.json(vehicles);
+    } catch (error) {
+        console.error("Erro ao buscar veículos:", error); // Adiciona log no terminal
+        res.status(500).json({ message: 'Erro ao buscar veículos.', error });
+    }
+};
+
   

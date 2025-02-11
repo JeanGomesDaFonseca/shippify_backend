@@ -20,3 +20,13 @@ exports.insertVehicle = async ({ driverId, model, plate, type, capacity }) => {
         [driverId, model, plate, type, capacity]
     );
 };
+
+// Buscar todos os veículos (NOVA FUNÇÃO)
+exports.fetchAllVehicles = async () => {
+    const [rows] = await db.query(
+        `SELECT id, model, plate, type, capacity FROM vehicle`
+    );
+    return rows;
+};
+
+
