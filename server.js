@@ -4,6 +4,10 @@ const dotenv = require('dotenv');
 const errorHandler = require('./src/middlewares/errorHandler');
 const vehicleRoutes = require('./src/routes/vehicleRoutes');
 const driverRoutes = require('./src/routes/driverRoutes');
+const companyRoutes = require('./src/routes/companyRoutes');
+const dataRoutes = require('./src/routes/dataRoutes'); 
+
+
 
 dotenv.config();
 
@@ -19,6 +23,10 @@ app.get('/', (req, res) => {
 // Rotas principais
 app.use('/api/vehicles', vehicleRoutes);
 app.use('/api/drivers', driverRoutes);
+app.use('/api/companies', companyRoutes);
+app.use('/api/data', dataRoutes);
+
+
 
 app.use(errorHandler);
 
